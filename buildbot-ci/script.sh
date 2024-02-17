@@ -112,8 +112,7 @@ if [ $parameter_counter -ne 0 ]; then
 	delete_buildbot_proccess
 else
 	delete_buildbot_proccess
-	#install_dependencies
-	sleep 1.5
+	install_dependencies
 	buildbot_master
 	buildbot_worker
 fi
