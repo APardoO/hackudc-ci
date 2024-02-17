@@ -14,9 +14,9 @@ declare -r grayColour="\e[0;37m\033[1m"
 declare -a dependencies=(python3 git cmake build-essential python3-dev libssl-dev libffi-dev sqlite3)
 
 # Variables globales de buildbot
-declare -r buildbot_master_dir="$(realpath .)/../buildbot-ci/master"
-declare -r buildbot_worker_dir="$(realpath .)/../buildbot-ci/worker"
-declare -r buildbot_environ="$(realpath .)/../buildbot-ci/source"
+declare -r buildbot_master_dir="$(realpath .)/buildbot-ci/master"
+declare -r buildbot_worker_dir="$(realpath .)/buildbot-ci/worker"
+declare -r buildbot_environ="$(realpath .)/buildbot-ci/source"
 
 
 # Trap del Ctrl_C
