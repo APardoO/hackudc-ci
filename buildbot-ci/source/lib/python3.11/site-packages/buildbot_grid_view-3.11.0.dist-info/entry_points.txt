@@ -1,0 +1,2 @@
+[buildbot.www]
+grid_view = buildbot_grid_view:ep

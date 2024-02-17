@@ -1,0 +1,866 @@
+#%RAML 1.0
+title: Buildbot Web API
+version: v2
+mediaType: application/json
+traits:
+    bbget:
+        responses:
+            200:
+                body:
+                    application/json:
+                        type: <<bbtype>>[]
+            404:
+                body:
+                    text/plain:
+                        example: "not found"
+    bbpost:
+        body:
+            type: <<reqtype>>
+        responses:
+            200:
+                body:
+                    application/json:
+                        type: <<resptype>>
+            404:
+                body:
+                    text/plain:
+                        example: "not found"
+    bbgetraw:
+        responses:
+            200:
+                headers:
+                    content-disposition:
+                        description: content disposition header allows browser to save data with proper filename
+                        example: attachment; filename=stdio
+                body:
+                    text/html:
+                        description: "html data if the object is html"
+                    text/plain:
+                        description: "plain text data if the object is text"
+                    application/octet-stream:
+                        description: "binary data if binary is binary"
+
+types:
+    build: !include types/build.raml
+    builder: !include types/builder.raml
+    buildrequest: !include types/buildrequest.raml
+    buildset: !include types/buildset.raml
+    build_data: !include types/build_data.raml
+    worker: !include types/worker.raml
+    change: !include types/change.raml
+    changesource: !include types/changesource.raml
+    forcescheduler: !include types/forcescheduler.raml
+    identifier: !include types/identifier.raml
+    log: !include types/log.raml
+    logchunk: !include types/logchunk.raml
+    master: !include types/master.raml
+    project: !include types/project.raml
+    rootlink: !include types/rootlink.raml
+    scheduler: !include types/scheduler.raml
+    sourcedproperties: !include types/sourcedproperties.raml
+    sourcestamp: !include types/sourcestamp.raml
+    patch: !include types/patch.raml
+    spec: !include types/spec.raml
+    step: !include types/step.raml
+    test_result: !include types/test_result.raml
+    test_result_set: !include types/test_result_set.raml
+/:
+    get:
+        is:
+        - bbget: {bbtype: rootlink}
+/application.spec:
+    get:
+        is:
+        - bbget: {bbtype: spec}
+/builders:
+    description: This path selects all builders
+    get:
+        is:
+        - bbget: {bbtype: builder}
+    /{builderid_or_buildername}:
+        uriParameters:
+            builderid_or_buildername:
+                type: number|identifier
+                description: the ID or name of the builder
+        description: This path selects a builder by builderid
+        get:
+            is:
+            - bbget: {bbtype: builder}
+        /forceschedulers:
+            description: This path selects all force-schedulers for a given builder
+            get:
+                is:
+                - bbget: {bbtype: forcescheduler}
+        /buildrequests:
+            description: This path selects all buildrequests for a given builder (can return lots of data!)
+            get:
+                is:
+                - bbget: {bbtype: buildrequest}
+        /builds:
+            description: This path selects all builds for a builder (can return lots of data!)
+            get:
+                is:
+                - bbget: {bbtype: build}
+            /{build_number}:
+                uriParameters:
+                    build_number:
+                        type: number
+                        description: the number of the build within the builder
+                description: This path selects a specific build by builderid and buildnumber
+                get:
+                    is:
+                    - bbget: {bbtype: build}
+                /actions/stop:
+                    post:
+                        description: |
+                            stops one build.
+                        body:
+                            application/json:
+                                properties:
+                                    reason:
+                                        type: string
+                                        required: false
+                                        description: The reason why the build was stopped
+                                    results:
+                                        type: integer
+                                        required: false
+                                        description: optionally results value override (default CANCELLED)
+                /actions/rebuild:
+                    post:
+                        description: |
+                            rebuilds one build.
+                        body:
+                            application/json:
+                                description: no parameter are needed
+                /data:
+                    description: This path selects all build data set for the build
+                    get:
+                        is:
+                        - bbget: {bbtype: build_data}
+                    /{build_data_name}:
+                        uriParameters:
+                            build_data_name:
+                                type: string
+                                description: the name of build data
+                        description: This path selects a build data with specific name
+                        get:
+                            is:
+                            - bbget: {bbtype: build_data}
+                        /value:
+                            description: This path returns the value of build data.
+                            get:
+                                is:
+                                - bbgetraw:
+                /changes:
+                    description: |
+                        This path selects all changes tested by a build
+                    get:
+                        is:
+                        - bbget: {bbtype: change}
+                /properties:
+                    description: |
+                        This path selects all properties of a build
+                    get:
+                        is:
+                        - bbget: {bbtype: sourcedproperties}
+
+                /steps:
+                    description: This path selects all steps for the given build
+                    get:
+                        is:
+                        - bbget: {bbtype: step}
+                    /{step_name}:
+                        uriParameters:
+                            step_name:
+                                type: identifier
+                                description: the slug name of the step
+                        description: This path selects a specific step for the given build
+                        get:
+                            is:
+                            - bbget: {bbtype: step}
+                        /logs:
+                            description: This path selects all logs for the given step.
+                            get:
+                                is:
+                                - bbget: {bbtype: log}
+                            /{log_slug}:
+                                uriParameters:
+                                    log_slug:
+                                        type: identifier
+                                        description: the slug name of the log
+                                get:
+                                    description: |
+                                        This path selects a specific log in the given step.
+                                    is:
+                                    - bbget: {bbtype: log}
+                                /contents:
+                                    get:
+                                        description: |
+                                            This path selects chunks from a specific log in the given step.
+                                        is:
+                                        - bbget: {bbtype: logchunk}
+                                /raw:
+                                    get:
+                                        description: |
+                                            This endpoint allows to get the raw logs for downloading into a file.
+                                            This endpoint does not provide paging capabilities.
+                                            For stream log types, the type line header characters are dropped.
+                                            'text/plain' is used as the mime type except for html logs, where 'text/html' is used.
+                                            The 'slug' is used as the filename for the resulting download. Some browsers are appending ``".txt"`` or ``".html"`` to this filename according to the mime-type.
+                                        is:
+                                        - bbgetraw:
+
+                    /{step_number}:
+                        uriParameters:
+                            step_number:
+                                type: number
+                                description: the number of the step
+                        description: This path selects a specific step given its step number
+                        get:
+                            is:
+                            - bbget: {bbtype: step}
+                        /logs:
+                            description: This path selects all log of a specific step
+                            get:
+                                is:
+                                - bbget: {bbtype: log}
+                            /{log_slug}:
+                                uriParameters:
+                                    log_slug:
+                                        type: identifier
+                                        description: the slug name of the log
+                                description: This path selects one log of a specific step
+                                get:
+                                    is:
+                                    - bbget: {bbtype: log}
+                                /contents:
+                                    get:
+                                        description: |
+                                            This path selects chunks from a specific log in the given step.
+                                        is:
+                                        - bbget: {bbtype: logchunk}
+                                /raw:
+                                    get:
+                                        description: |
+                                            This path downloads the whole log
+                                        is:
+                                        - bbgetraw:
+
+        /workers:
+            description: |
+                This path selects all workers configured for a given builder
+            get:
+                is:
+                - bbget: {bbtype: worker}
+            /{name}:
+                description: |
+                    This path selects a worker by name filtered by given builderid
+                uriParameters:
+                    name:
+                        type: identifier
+                        description: the name of the worker
+                get:
+                    is:
+                    - bbget: {bbtype: worker}
+            /{workerid}:
+                description: |
+                    This path selects a worker by id filtered by given builderid
+                uriParameters:
+                    workerid:
+                        type: number
+                        description: the id of the worker
+                get:
+                    is:
+                    - bbget: {bbtype: worker}
+
+                /actions/stop:
+                    post:
+                        description: |
+                            gracefully shutdown one worker.
+                        body:
+                            application/json:
+                                properties:
+                                    reason:
+                                        type: string
+                                        required: false
+                                        description: The reason why the worker was stopped
+
+                /actions/kill:
+                    post:
+                        description: |
+                            forcefully shutdown one worker.
+                        body:
+                            application/json:
+                                properties:
+                                    reason:
+                                        type: string
+                                        required: false
+                                        description: The reason why the worker was stopped
+
+                /actions/pause:
+                    post:
+                        description: |
+                            Pause one worker. The worker will stop taking new build.
+                        body:
+                            application/json:
+                                properties:
+                                    reason:
+                                        type: string
+                                        required: false
+                                        description: The reason why the worker was paused
+                /actions/unpause:
+                    post:
+                        description: |
+                            Unpause one worker. The worker will re-start taking builds.
+                        body:
+                            application/json:
+                                properties:
+                                    reason:
+                                        type: string
+                                        required: false
+                                        description: The reason why the worker was un-paused
+        /masters:
+            description: |
+                This path selects all masters supporting a given builder
+            get:
+                is:
+                - bbget: {bbtype: master}
+
+        /{masterid}:
+            uriParameters:
+                masterid:
+                    type: number
+                    description: the id of the master
+            description: |
+                This path selects a master by id filtered by given builderid
+            get:
+                is:
+                - bbget: {bbtype: master}
+
+        /test_result_sets:
+            description: |
+                This selects all test result sets that have been created for a particular builder
+            get:
+                is:
+                - bbget: {bbtype: test_result_set}
+
+        /test_code_paths:
+            description: |
+                This selects all test code paths that have been created for a particular builder
+            get:
+                is:
+                - bbget: {bbtype: string}
+
+        /test_names:
+            description: |
+                This selects all test names that have been created for a particular builder
+            get:
+                is:
+                - bbget: {bbtype: string}
+
+/projects:
+    description: This path selects all projects
+    get:
+        queryParameters:
+            active:
+                type: boolean
+                description: Whether to return only active projects (with active builders) or all
+                required: false
+        is:
+        - bbget: {bbtype: project}
+
+    /{projectid_or_projectname}:
+        uriParameters:
+            projectid_or_projectname:
+                type: number|identifier
+                description: the ID or name of the project
+        description: This path selects a single project
+        get:
+            is:
+            - bbget: {bbtype: project}
+        /builders:
+            description: This path selects all builders for a project
+            get:
+                is:
+                - bbget: {bbtype: builder}
+
+/buildrequests:
+    /{buildrequestid}:
+        uriParameters:
+            buildrequestid:
+                type: number
+                description: the id of the buildrequest
+        get:
+            is:
+            - bbget: {bbtype: buildrequest}
+        /builds:
+            get:
+                is:
+                - bbget: {bbtype: build}
+        /actions/cancel:
+            post:
+                description: |
+                    Cancel one buildrequest.
+                    If necessary, this will stop the builds generated by the buildrequest, including triggered builds.
+                body:
+                    application/json:
+                        properties:
+                            reason:
+                                type: string
+                                required: false
+                                description: The reason why the buildrequest was cancelled
+        /actions/set_priority:
+            post:
+                description: |
+                    Change a buildrequest's priority.
+                body:
+                    application/json:
+                        properties:
+                            priority:
+                                type: int
+                                required: true
+                                description: The new priority for the buildrequest
+    get:
+        is:
+        - bbget: {bbtype: buildrequest}
+/builds:
+    get:
+        is:
+        - bbget: {bbtype: build}
+    /{buildid}:
+        description: |
+            This path selects a build by id
+        uriParameters:
+            buildid:
+                type: number
+                description: the id of the build
+        get:
+            is:
+            - bbget: {bbtype: build}
+        /actions/stop:
+            post:
+                description: |
+                    stops one build.
+                body:
+                    application/json:
+                        properties:
+                            reason:
+                                type: string
+                                required: false
+                                description: The reason why the build was stopped
+        /actions/rebuild:
+            post:
+                description: |
+                    rebuilds one build.
+                body:
+                    application/json:
+                        description: no parameter are needed
+        /changes:
+            description: |
+                This path selects all changes tested by a build
+            get:
+                is:
+                - bbget: {bbtype: change}
+        /properties:
+            description: |
+                This path selects all properties of a build
+            get:
+                is:
+                - bbget: {bbtype: sourcedproperties}
+
+        /data:
+            description: This path selects all build data set for the build
+            get:
+                is:
+                - bbget: {bbtype: build_data}
+            /{build_data_name}:
+                uriParameters:
+                    build_data_name:
+                        type: string
+                        description: the name of build data
+                description: This path selects a build data with specific name
+                get:
+                    is:
+                    - bbget: {bbtype: build_data}
+                /value:
+                    description: This path returns the value of build data.
+                    get:
+                        is:
+                        - bbgetraw:
+
+        /steps:
+            description: |
+                This path selects all steps of a build
+            get:
+                is:
+                - bbget: {bbtype: step}
+            /{step_number_or_name}:
+                uriParameters:
+                    step_number_or_name:
+                        type: identifier|number
+                        description: the name or number of the step
+                description: |
+                    This path selects one step of a build
+                get:
+                    is:
+                    - bbget: {bbtype: step}
+                /logs:
+                    description: |
+                        This path selects all logs of a step of a build
+                    get:
+                        is:
+                        - bbget: {bbtype: log}
+                    /{log_slug}:
+                        uriParameters:
+                            log_slug:
+                                type: identifier
+                                description: the slug name of the log
+                        description: This path selects one log of a a specific step
+                        get:
+                            is:
+                            - bbget: {bbtype: log}
+                        /contents:
+                            get:
+                                description: |
+                                    This path selects chunks from a specific log in the given step.
+                                is:
+                                - bbget: {bbtype: logchunk}
+                        /raw:
+                            get:
+                                description: |
+                                    This path downloads the whole log
+                                is:
+                                - bbgetraw:
+                /test_result_sets:
+                    description: |
+                        This selects all test result sets that have been created for a particular step
+                    get:
+                        is:
+                        - bbget: {bbtype: test_result_set}
+        /test_result_sets:
+            description: |
+                This selects all test result sets that have been created for a particular build
+            get:
+                is:
+                - bbget: {bbtype: test_result_set}
+
+/buildsets:
+    description: This path selects all buildsets
+    get:
+        is:
+        - bbget: {bbtype: buildset}
+    /{bsid}:
+        description: This path selects a buildset by id
+        uriParameters:
+            bsid:
+                type: identifier
+                description: the id of the buildset
+        get:
+            is:
+            - bbget: {bbtype: buildset}
+        /properties:
+            description: |
+                This path selects all properties of a buildset.
+                Buildset properties are part of the initial properties of a build.
+            get:
+                is:
+                - bbget: {bbtype: sourcedproperties}
+/workers:
+    description: This path selects all workers
+    get:
+        is:
+        - bbget: {bbtype: worker}
+    /{name_or_id}:
+        description: This path selects a worker by name or id
+        uriParameters:
+            name_or_id:
+                type: number|identifier
+                description: the name or id of a worker
+        get:
+            is:
+            - bbget: {bbtype: worker}
+
+/changes:
+    description: |
+        This path selects **all** changes.
+        On a reasonably loaded master, this can quickly return a very large result, taking minutes to process.
+        A specific query configuration is optimized which allows to get the recent changes: ``order:-changeid&limit=<n>``
+    get:
+        is:
+        - bbget: {bbtype: change}
+    /{changeid}:
+        description: This path selects one change by id
+        uriParameters:
+            changeid:
+                type: number
+                description: the id of a change
+        get:
+            is:
+            - bbget: {bbtype: change}
+
+/changesources:
+    description: |
+        This path selects all changesource
+    get:
+        is:
+        - bbget: {bbtype: changesource}
+    /{changesourceid}:
+        uriParameters:
+            changesourceid:
+                type: number
+                description: the id of a changesource
+        description: |
+            This path selects one changesource given its id
+        get:
+            is:
+            - bbget: {bbtype: changesource}
+/forceschedulers:
+    description: |
+        This path selects all forceschedulers
+    get:
+        is:
+        - bbget: {bbtype: forcescheduler}
+
+    /{schedulername}:
+        description: |
+            This path selects all changesource
+        uriParameters:
+            schedulername:
+                type: identifier
+                description: the name of a scheduler
+        get:
+            is:
+            - bbget: {bbtype: forcescheduler}
+
+        /actions/force:
+            post:
+                description: |
+                    Triggers the forcescheduler
+                body:
+                    application/json:
+                        properties:
+                            owner:
+                                type: string
+                                required: false
+                                description: The user who wants to create the buildrequest
+                            priority:
+                                type: integer
+                                required: false
+                                description: The build request priority. Defaults to 0.
+                            '[]':
+                                description: content of the forcescheduler parameter is dependent on the configuration of the forcescheduler
+/logs/{logid}:
+    uriParameters:
+        logid:
+            type: number
+            description: the id of the log
+    description: This path selects one log
+    get:
+        is:
+        - bbget: {bbtype: log}
+    /contents:
+        get:
+            description: |
+                This path selects chunks from a specific log
+            is:
+            - bbget: {bbtype: logchunk}
+    /raw:
+        get:
+            description: |
+                This path downloads the whole log
+            is:
+            - bbgetraw:
+/masters:
+    description: This path selects all masters
+    get:
+        is:
+        - bbget: {bbtype: master}
+    /{masterid}:
+        description: This path selects one master given its id
+        uriParameters:
+            masterid:
+                type: number
+                description: the id of the master
+        get:
+            is:
+            - bbget: {bbtype: master}
+        /builders:
+            description: This path selects all builders of a given master
+            get:
+                is:
+                - bbget: {bbtype: builder}
+            /{builderid}:
+                description: This path selects one builder by id of a given master
+                uriParameters:
+                    builderid:
+                        type: number
+                        description: the id of the builder
+                get:
+                    is:
+                    - bbget: {bbtype: builder}
+                /workers:
+                    description: This path selects all workers for a given builder and a given master
+                    get:
+                        is:
+                        - bbget: {bbtype: worker}
+                    /{name}:
+                        description: This path selects one worker by name for a given builder and a given master
+                        uriParameters:
+                            name:
+                                type: identifier
+                                description: the name of the worker
+                        get:
+                            is:
+                            - bbget: {bbtype: worker}
+                    /{workerid}:
+                        description: This path selects one worker by name for a given builder and a given master
+                        uriParameters:
+                            workerid:
+                                type: number
+                                description: the id of the worker
+                        get:
+                            is:
+                            - bbget: {bbtype: worker}
+        /workers:
+            description: This path selects all workers for a given master
+            get:
+                is:
+                - bbget: {bbtype: worker}
+            /{name}:
+                description: This path selects one worker by name for a given master
+                uriParameters:
+                    name:
+                        type: identifier
+                        description: the name of the worker
+                get:
+                    is:
+                    - bbget: {bbtype: worker}
+            /{workerid}:
+                description: This path selects one worker by id for a given master
+                uriParameters:
+                    workerid:
+                        type: number
+                        description: the id of the worker
+                get:
+                    is:
+                    - bbget: {bbtype: worker}
+        /changesources:
+            description: This path selects all changesources for a given master
+            get:
+                is:
+                - bbget: {bbtype: changesource}
+            /{changesourceid}:
+                description: This path selects one changesource by id for a given master
+                get:
+                    is:
+                    - bbget: {bbtype: changesource}
+        /schedulers:
+            description: This path selects all schedulers for a given master
+            get:
+                is:
+                - bbget: {bbtype: scheduler}
+            /{schedulerid}:
+                description: This path selects one scheduler by id for a given master
+                uriParameters:
+                    schedulerid:
+                        type: number
+                        description: the id of the scheduler
+                get:
+                    is:
+                    - bbget: {bbtype: scheduler}
+/schedulers:
+    description: This path selects all schedulers
+    get:
+        is:
+        - bbget: {bbtype: scheduler}
+    /{schedulerid}:
+        uriParameters:
+            schedulerid:
+                type: number
+                description: the id of the scheduler
+        description: This path selects one scheduler by id
+        get:
+            is:
+            - bbget: {bbtype: scheduler}
+/sourcestamps:
+    description: This path selects all sourcestamps (can return lots of data!)
+    get:
+        is:
+        - bbget: {bbtype: sourcestamp}
+    /{ssid}:
+        description: This path selects one sourcestamp by id
+        uriParameters:
+            ssid:
+                type: number
+                description: the id of the sourcestamp
+        get:
+            is:
+            - bbget: {bbtype: sourcestamp}
+        /changes:
+            description: This path selects all changes associated to one sourcestamp
+            get:
+                is:
+                - bbget: {bbtype: change}
+/steps:
+    /{stepid}:
+        description: This path selects one step by id
+        uriParameters:
+            stepid:
+                type: number
+                description: the id of the step
+        /logs:
+            description: This path selects all logs for the given step
+            get:
+                is:
+                - bbget: {bbtype: log}
+            /{log_slug}:
+                uriParameters:
+                    log_slug:
+                        type: identifier
+                        description: the slug name of the log
+                get:
+                    description: |
+                        This path selects a specific log in the given step.
+                    is:
+                    - bbget: {bbtype: log}
+                /contents:
+                    get:
+                        description: |
+                            This path selects chunks from a specific log in the given step.
+                        is:
+                        - bbget: {bbtype: logchunk}
+                /raw:
+                    get:
+                        description: |
+                            This path downloads the whole log
+                        is:
+                        - bbgetraw:
+        /test_result_sets:
+            description: |
+                This selects all test result sets that have been created for a particular step
+            get:
+                is:
+                - bbget: {bbtype: test_result_set}
+
+/test_result_sets:
+    /{test_result_setid}:
+        description: Selects a test result set by id
+        uriParameters:
+            test_result_setid:
+                type: number
+                description: the id of the test result set
+        get:
+            description: This path selects specific test result set.
+            is:
+            - bbget: {bbtype: test_result_set}
+        /results:
+            description: This path selects all test results for the given test result set
+            get:
+                is:
+                - bbget: {bbtype: test_result}
+        /raw_results:
+            description: This path selects the raw data for the test result set, if available
+            get:
+                is:
+                - bbget: {bbtype: test_raw_result}
+

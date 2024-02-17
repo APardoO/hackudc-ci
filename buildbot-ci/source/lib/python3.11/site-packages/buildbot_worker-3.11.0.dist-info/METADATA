@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: buildbot-worker
+Version: 3.11.0
+Summary: Buildbot Worker Daemon
+Home-page: http://buildbot.net/
+Author: Brian Warner
+Author-email: warner-buildbot@lothar.com
+Maintainer: Dustin J. Mitchell
+Maintainer-email: dustin@v.igoro.us
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: No Input/Output (Daemon)
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: Software Development :: Testing
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+License-File: COPYING
+Requires-Dist: twisted >=18.7.0
+Requires-Dist: future
+Requires-Dist: autobahn >=0.16.0
+Requires-Dist: msgpack >=0.6.0
+Provides-Extra: test
+Requires-Dist: pep8 ; extra == 'test'
+Requires-Dist: pylint >=1.4.0 ; extra == 'test'
+Requires-Dist: pyenchant ; extra == 'test'
+Requires-Dist: flake8 ~=3.9.0 ; extra == 'test'
+Requires-Dist: psutil ; extra == 'test'
+
+See the 'buildbot' package for details

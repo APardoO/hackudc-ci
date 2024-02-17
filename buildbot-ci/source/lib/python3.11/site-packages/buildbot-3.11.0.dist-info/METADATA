@@ -1,0 +1,146 @@
+Metadata-Version: 2.1
+Name: buildbot
+Version: 3.11.0
+Summary: The Continuous Integration Framework
+Home-page: http://buildbot.net/
+Author: Brian Warner
+Author-email: warner-buildbot@lothar.com
+Maintainer: Dustin J. Mitchell
+Maintainer-email: dustin@v.igoro.us
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: No Input/Output (Daemon)
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: Software Development :: Testing
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+License-File: COPYING
+Requires-Dist: setuptools >=8.0
+Requires-Dist: Twisted <=23.10.0,>=18.7.0
+Requires-Dist: Jinja2 >=2.1
+Requires-Dist: msgpack >=0.6.0
+Requires-Dist: croniter >=1.3.0
+Requires-Dist: importlib-resources >=5
+Requires-Dist: zope.interface >=4.1.1
+Requires-Dist: sqlalchemy <1.5,>=1.3.0
+Requires-Dist: alembic >=1.6.0
+Requires-Dist: python-dateutil >=1.5
+Requires-Dist: txaio >=2.2.2
+Requires-Dist: autobahn >=0.16.0
+Requires-Dist: packaging
+Requires-Dist: PyJWT
+Requires-Dist: pyyaml
+Requires-Dist: unidiff >=0.7.5
+Provides-Extra: bundle
+Requires-Dist: buildbot-www ==3.11.0 ; extra == 'bundle'
+Requires-Dist: buildbot-worker ==3.11.0 ; extra == 'bundle'
+Requires-Dist: buildbot-waterfall-view ==3.11.0 ; extra == 'bundle'
+Requires-Dist: buildbot-console-view ==3.11.0 ; extra == 'bundle'
+Requires-Dist: buildbot-grid-view ==3.11.0 ; extra == 'bundle'
+Provides-Extra: docs
+Requires-Dist: docutils >=0.16.0 ; extra == 'docs'
+Requires-Dist: sphinx >=3.2.0 ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme >=0.5 ; extra == 'docs'
+Requires-Dist: sphinxcontrib-spelling ; extra == 'docs'
+Requires-Dist: sphinxcontrib-websupport ; extra == 'docs'
+Requires-Dist: pyenchant ; extra == 'docs'
+Requires-Dist: sphinx-jinja ; extra == 'docs'
+Requires-Dist: towncrier ; extra == 'docs'
+Provides-Extra: test
+Requires-Dist: setuptools-trial ; extra == 'test'
+Requires-Dist: isort ; extra == 'test'
+Requires-Dist: pylint <1.7.0 ; extra == 'test'
+Requires-Dist: pyenchant ; extra == 'test'
+Requires-Dist: flake8 ~=3.9.2 ; extra == 'test'
+Requires-Dist: treq ; extra == 'test'
+Requires-Dist: txrequests ; extra == 'test'
+Requires-Dist: pypugjs ; extra == 'test'
+Requires-Dist: boto3 ; extra == 'test'
+Requires-Dist: moto ; extra == 'test'
+Requires-Dist: Markdown >=3.0.0 ; extra == 'test'
+Requires-Dist: parameterized ; extra == 'test'
+Requires-Dist: lz4 ; extra == 'test'
+Provides-Extra: tls
+Requires-Dist: Twisted[tls] <=23.10.0,>=18.7.0 ; extra == 'tls'
+Requires-Dist: pyopenssl >=16.0.0 ; extra == 'tls'
+Requires-Dist: service-identity ; extra == 'tls'
+Requires-Dist: idna >=0.6 ; extra == 'tls'
+
+Buildbot: The Continuous Integration Framework
+==============================================
+
+:Site: https://buildbot.net
+:Original author: Brian Warner <warner-buildbot @ lothar . com>
+:Current maintainer: `The Botherders <https://github.com/buildbot/botherders>`_.
+
+.. contents::
+   :local:
+
+Buildbot is an open-source continuous integration framework for automating software build, test, and release processes.
+
+* Buildbot is easy to set up, but very extensible and customizable.
+  It supports arbitrary build processes, and is not limited to common build processes for particular languages (e.g., autotools or ant)
+* Buildbot supports building and testing on a variety of platforms.
+  Developers, who do not have the facilities to test their changes everywhere before committing, will know shortly afterwards whether they have broken the build or not.
+* Buildbot allows to track various metrics (warning counts, lint checks, image size, compile time, etc) over time.
+* Buildbot has minimal requirements for workers: using virtualenv, only a Python installation is required.
+* Workers can be run behind a NAT firewall and communicate with the master.
+* Buildbot has a variety of status-reporting tools to get information about builds in front of developers in a timely manner.
+
+Documentation
+-------------
+
+See https://docs.buildbot.net/current/ for documentation of the current version of Buildbot.
+
+Docker container
+----------------
+Buildbot comes with a ready to use docker container available at buildbot/buildbot-master
+Following environment variables are supported for configuration:
+
+* ``BUILDBOT_CONFIG_URL``: http url to a config tarball.
+    The tarball must be in the .tar.gz format.
+    The tarball must contain a directory, which will contain a master.cfg file in it.
+    The tarball may contain a twisted.tac file in it, which can be used to configure the twisted logging system (e.g to log in logstash instead of the default stdout).
+    The tarball will be extracted in a directory named ``$BUILDBOT_CONFIG_DIR`` in the master directory, and can contain additional python module that the master.cfg can load.
+    If ``BUILDBOT_CONFIG_URL`` does not end with .tar.gz, it is considered to be an URL to the direct ``master.cfg``
+
+* ``BUILDBOT_CONFIG_DIR`` directory where to extract the config tarball within the master directory.
+  It is important so that you can do relative imports in your master.cfg like it is done in the metabbotcfg (https://github.com/buildbot/metabbotcfg)
+
+
+Requirements
+------------
+
+See https://docs.buildbot.net/current/manual/installation/index.html
+
+Briefly: python, Twisted, Jinja2, simplejson, and SQLite.
+Simplejson and SQLite are included with recent versions of Python.
+
+Contributing
+-------------
+
+Please send your patches to https://github.com/buildbot/buildbot/
+
+Support
+-------
+
+Please send questions, file bugs, etc, on the Buildbot Github project https://github.com/buildbot/buildbot/issues.
+Alternatively, write to the buildbot-devel mailing list reachable through https://buildbot.net/.
+
+Copying
+-------
+
+Buildbot is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 2.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
+
+For full details, please see the file named COPYING in the top directory of the source tree.
+You should have received a copy of the GNU General Public License along with this program.
+If not, see <http://www.gnu.org/licenses/>.

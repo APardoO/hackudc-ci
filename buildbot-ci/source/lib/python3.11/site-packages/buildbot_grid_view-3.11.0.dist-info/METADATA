@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: buildbot-grid-view
+Version: 3.11.0
+Summary: Buildbot Grid View plugin
+Home-page: http://buildbot.net/
+Author: Robin Jarry
+Author-email: robin.jarry@6wind.com
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+

@@ -1,0 +1,2 @@
+[buildbot.www]
+base = buildbot_www:ep

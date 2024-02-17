@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: buildbot-waterfall-view
+Version: 3.11.0
+Summary: Buildbot Waterfall View plugin
+Home-page: http://buildbot.net/
+Author: Pierre Tardy
+Author-email: tardyp@gmail.com
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+

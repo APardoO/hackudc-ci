@@ -1,0 +1,65 @@
+.modal-big .modal-dialog {
+  width: 80%;
+}
+.modal-big .fa {
+  cursor: pointer;
+}
+.console .table-fixedwidth {
+  width: initial;
+}
+.console .load-indicator {
+  width: 100%;
+  height: 100%;
+  z-index: 900;
+  background-color: #ffffff;
+  display: table;
+}
+.console .load-indicator .spinner {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+.console .load-indicator .spinner p {
+  font-weight: 300;
+  margin-top: 10px;
+}
+.console .column {
+  min-width: 40px;
+  max-width: 40px;
+  width: 40px;
+}
+.console table {
+  border: none;
+}
+.console .tag_row td {
+  margin: 0px;
+  padding: 0px;
+}
+.console .tag_row span {
+  position: relative;
+  float: left;
+  font-size: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.console tr.first-row {
+  background-color: #fff !important;
+}
+.console tr.first-row th {
+  border: none;
+  background-color: #fff !important;
+}
+.console tr.first-row .builder {
+  position: relative;
+  float: left;
+  font-size: 12px;
+  text-align: center;
+  transform: rotate(-25deg);
+  transform-origin: 0% 100%;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+
+/*# sourceMappingURL=styles.css.map*/
