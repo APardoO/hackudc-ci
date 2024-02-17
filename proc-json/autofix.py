@@ -18,10 +18,21 @@ def extract_commands(json_data):
 
 def execute_commands(commands):
     for command in commands:
-        print(f"Executing command: {command}")
-        # Here you would call the appropriate system or subprocess function to execute the command
-        # Remember to validate and sanitize the command string to prevent security issues
-
+        try:
+            # Split the command into parts for subprocess.run
+            # This is important for safely executing the command without shell=True
+            command_parts = command.split()
+            
+            # Execute the command
+            result = subprocess.run(command_parts, check=True, text=True, capture_output=True)
+            
+            # Print the stdout and stderr of the command
+            print(f"Command executed successfully: {command}\nOutput: {result.stdout}")
+            if result.stderr:
+                print(f"Errors: {result.stderr}")
+        except subprocess.CalledProcessError as e:
+            # Handle errors in the executed command
+            print(f"Error executing command: {command}\nError: {e}")
 # Example usage
 if __name__ == "__main__":
     json_file_path = 'filtered_sorted_checks_with_autofix.json'
