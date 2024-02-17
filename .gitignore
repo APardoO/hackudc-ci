@@ -1,2 +1,4 @@
 codee
 mbedtls
+*.json
+*.sarif
