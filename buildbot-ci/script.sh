@@ -32,7 +32,7 @@ function install_dependencies(){
 	echo -e "${yellowColour}[+]${endColour} ${grayColour}Checking dependencies...${endColour}"
 	echo -e "${dependencies[@]}\n"
 	for prog in ${dependencies[@]}; do
-		if ! command -v $prog $> /dev/null; then
+		if ! command -v $prog > /dev/null 2>&1; then
 			echo -e "${yellowColour}[-]${endColour} ${grayColour}Tool:${endColour} ${blueColour}$prog${endColour}"
 			apt-get install -y $prog &> /dev/null
 		fi
