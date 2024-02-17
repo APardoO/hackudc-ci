@@ -60,7 +60,6 @@ function install_dependencies(){
 		fi
 		sleep 1
 	done
-	pip install sarif-tools
 }
 
 ## ===> Buildbot master
@@ -74,7 +73,7 @@ function buildbot_master(){
 	fi
 	echo -e "\n${purpleColour}[+]${endColour} ${grayColour}Installing${endColour} ${blueColour}buildbot${endColour}${grayColour}...${endColour}"
 	pip install --upgrade pip
-	pip install 'buildbot[bundle]'
+	pip install 'buildbot[bundle]' sarif-tools
 	echo -e "\n${purpleColour}[+]${endColour} ${grayColour}Starting buildbot master node...${endColour}"
 	buildbot start $buildbot_master_dir
 	if [ $? -ne 0 ]; then
