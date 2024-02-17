@@ -60,6 +60,7 @@ function install_dependencies(){
 		fi
 		sleep 1
 	done
+	pip install sarif-tools
 }
 
 ## ===> Buildbot master
