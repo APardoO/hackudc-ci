@@ -50,6 +50,7 @@ function buildbot_master(){
 	pip install 'buildbot[bundle]'
 	echo -e "\n${purpleColour}[+]${endColour} ${grayColour}Starting buildbot master node...${endColour}"
 	buildbot start $buildbot_master_dir
+	if [ $? -ne 0 ]; then echo -e "\n${redColour}[ERROR]${endColour} ${yellowColour}Cannot startup buildbot $buildbot_master_dir${endColour}\n"; exit 1; fi
 }
 
 ## ===> Buildbot worker
@@ -61,6 +62,7 @@ function buildbot_worker(){
 	pip install buildbot-worker setuptools-trial
 	echo -e "\n${purpleColour}[+]${endColour} ${grayColour}Starting buildbot worker node...${endColour}"
 	buildbot-worker start $buildbot_worker_dir
+	if [ $? -ne 0 ]; then echo -e "\n${redColour}[ERROR]${endColour} ${yellowColour}Cannot startup buildbot-worker $buildbot_worker_dir${endColour}\n"; exit 1; fi
 }
 
 # Programa principal
