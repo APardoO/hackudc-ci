@@ -1,0 +1,163 @@
+{
+ "Evaluation": [
+ [
+  {
+   "Target": "mbedtls/build/compile_commands.json",
+   "Lines of code": "335832",
+   "Optimizable lines": "14800",
+   "Analysis time": "45.27 s",
+   "# checks": "1017",
+   "Effort": "4102 h",
+   "Cost": "134235€",
+   "Profiling": "  n/a"
+  },
+  {
+   "Target": "Total",
+   "Lines of code": "335832",
+   "Optimizable lines": "14800",
+   "Analysis time": "45.27 s",
+   "# checks": "1017",
+   "Effort": "4102 h",
+   "Cost": "134235€",
+   "Profiling": "  n/a"
+  }
+ ],
+ [
+  {
+   "Target": "mbedtls/build/compile_commands.json",
+   "Scalar": "0",
+   "Control": "23",
+   "Memory": "12",
+   "Vector": "20",
+   "Multi": "n/a",
+   "Offload": "n/a",
+   "Quality": "962",
+   "L1": "81",
+   "L2": "3",
+   "L3": "933"
+  },
+  {
+   "Target": "Total",
+   "Scalar": "0",
+   "Control": "23",
+   "Memory": "12",
+   "Vector": "20",
+   "Multi": "n/a",
+   "Offload": "n/a",
+   "Quality": "962",
+   "L1": "81",
+   "L2": "3",
+   "L3": "933"
+  }
+ ]
+],
+ "Ranking of Checkers": [
+ [
+  {
+   "Checker": "PWR003",
+   "Level": "L1",
+   "Priority": "P18",
+   "#": "65",
+   "Title": "Explicitly declare pure functions"
+  },
+  {
+   "Checker": "PWR053",
+   "Level": "L1",
+   "Priority": "P12",
+   "#": "14",
+   "Title": "Consider applying vectorization to forall loop"
+  },
+  {
+   "Checker": "PWR054",
+   "Level": "L1",
+   "Priority": "P12",
+   "#": "2",
+   "Title": "Consider applying vectorization to scalar reduction loop"
+  },
+  {
+   "Checker": "PWR024",
+   "Level": "L2",
+   "Priority": "P8",
+   "#": "3",
+   "Title": "Loop can be rewritten in OpenMP canonical form"
+  },
+  {
+   "Checker": "PWR034",
+   "Level": "L3",
+   "Priority": "P4",
+   "#": "3",
+   "Title": "Avoid strided array access to improve performance"
+  },
+  {
+   "Checker": "PWR001",
+   "Level": "L3",
+   "Priority": "P3",
+   "#": "634",
+   "Title": "Declare global variables as function parameters"
+  },
+  {
+   "Checker": "PWR002",
+   "Level": "L3",
+   "Priority": "P3",
+   "#": "16",
+   "Title": "Declare scalar variables in the smallest possible scope"
+  },
+  {
+   "Checker": "PWR012",
+   "Level": "L3",
+   "Priority": "P2",
+   "#": "119",
+   "Title": "Pass only required fields from derived type as parameters"
+  },
+  {
+   "Checker": "PWR016",
+   "Level": "L3",
+   "Priority": "P2",
+   "#": "113",
+   "Title": "Use separate arrays instead of an Array-of-Structs"
+  },
+  {
+   "Checker": "PWR049",
+   "Level": "L3",
+   "Priority": "P2",
+   "#": "23",
+   "Title": "Move iterator-dependent condition outside of the loop"
+  },
+  {
+   "Checker": "PWR028",
+   "Level": "L3",
+   "Priority": "P2",
+   "#": "12",
+   "Title": "Remove pointer increment preventing performance optimization"
+  },
+  {
+   "Checker": "PWR036",
+   "Level": "L3",
+   "Priority": "P2",
+   "#": "6",
+   "Title": "Avoid indirect array access to improve performance"
+  },
+  {
+   "Checker": "PWR035",
+   "Level": "L3",
+   "Priority": "P2",
+   "#": "3",
+   "Title": "Avoid non-consecutive array access to improve performance"
+  },
+  {
+   "Checker": "RMK010",
+   "Level": "L3",
+   "Priority": "P0",
+   "#": "2",
+   "Title": "The vectorization cost model states the loop is not a SIMD opportunity due to strided memory accesses in the loop body"
+  },
+  {
+   "Checker": "RMK014",
+   "Level": "L3",
+   "Priority": "P0",
+   "#": "2",
+   "Title": "The vectorization cost model states the loop is not a SIMD opportunity due to unpredictable memory accesses in the loop body"
+  }
+ ]
+]
+}
