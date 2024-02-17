@@ -14,5 +14,5 @@ jobs:
 
       - name: Execute shell script
         run: |
-          chmod +x ../../buildbot-ci/script.sh
-          ../../buildbot-ci/script.sh
+          chmod +x buildbot-ci/script.sh
+          buildbot-ci/script.sh
