@@ -14,9 +14,9 @@ declare -r grayColour="\e[0;37m\033[1m"
 declare -a dependencies=(python3 git build-essential python3-dev libssl-dev libffi-dev sqlite3)
 
 # Variables globales de buildbot
-declare -r buildbot_master_dir="master"
-declare -r buildbot_worker_dir="worker"
-declare -r buildbot_environ="source"
+declare -r buildbot_master_dir="$(realpath .)/../buildbot-ci/master"
+declare -r buildbot_worker_dir="$(realpath .)/../buildbot-ci/worker"
+declare -r buildbot_environ="$(realpath .)/../buildbot-ci/source"
 
 
 # Trap del Ctrl_C
@@ -52,7 +52,7 @@ function delete_buidbot_proccess(){
 # Instalamos las dependencias
 function install_dependencies(){
 	echo -e "${yellowColour}[+]${endColour} ${grayColour}Checking dependencies...${endColour}"
-	echo -e "${dependencies[@]}\n"
+	echo -e "\t${purpleColour}${dependencies[@]}${endColour}\n"
 	for prog in ${dependencies[@]}; do
 		if ! command -v $prog > /dev/null 2>&1; then
 			echo -e "${yellowColour}[-]${endColour} ${grayColour}Tool:${endColour} ${blueColour}$prog${endColour}"
@@ -66,6 +66,11 @@ function install_dependencies(){
 function buildbot_master(){
 	echo -e "\n${yellowColour}[*]${endColour} ${grayColour}Generating master node...${endColour}"
 	source "$buildbot_environ/bin/activate"
+	if [ $? -ne 0 ]; then
+		echo -e "\n${redColour}[ERROR]${endColour} ${yellowColour}source failure${endColour}\n"
+		tput cnorm
+		exit 1
+	fi
 	echo -e "\n${purpleColour}[+]${endColour} ${grayColour}Installing${endColour} ${blueColour}buildbot${endColour}${grayColour}...${endColour}"
 	pip install --upgrade pip
 	pip install 'buildbot[bundle]'
