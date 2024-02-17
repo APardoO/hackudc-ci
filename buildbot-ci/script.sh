@@ -11,7 +11,7 @@ declare -r turquoiseColour="\e[0;36m\033[1m"
 declare -r grayColour="\e[0;37m\033[1m"
 
 # Variables globales
-declare -a dependencies=(python3 git build-essential python3-dev libssl-dev libffi-dev sqlite3)
+declare -a dependencies=(python3 git cmake build-essential python3-dev libssl-dev libffi-dev sqlite3)
 
 # Variables globales de buildbot
 declare -r buildbot_master_dir="$(realpath .)/../buildbot-ci/master"
@@ -37,7 +37,7 @@ function helpPannel(){
 # Eliminar los pricesos
 function delete_buildbot_proccess(){
 	declare -a process=($(netstat -putana | awk '{print $7}' | grep -v "\-" | grep "python" | awk '{print $1}' FS="/" | sort -u | xargs echo " "))
-	if [ "${#process[@]}" -eq "0" ]; then tput cnorm; exit 0; fi
+	if [ "${#process[@]}" -eq "0" ]; then tput cnorm; return 0; fi
 	echo -e "\n${yellowColour}[*]${endColour} ${grayColour}Deleting process:${endColour} ${blueColour}${process[@]}${endColour}"
 	for proc in ${process[@]}; do
 		kill $proc
