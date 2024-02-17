@@ -211,3 +211,154 @@
 2024-02-17 12:58:27+0100 [Broker,0,127.0.0.1] Got workerinfo from 'worker'
 2024-02-17 12:58:28+0100 [-] bot attached
 2024-02-17 12:58:28+0100 [Broker,0,127.0.0.1] Worker worker attached to runtests
+2024-02-17 14:00:03+0100 [-] Timing out client: IPv4Address(type='TCP', host='127.0.0.1', port=34806)
+2024-02-17 14:00:03+0100 [-] Timing out client: IPv4Address(type='TCP', host='127.0.0.1', port=34810)
+2024-02-17 14:00:03+0100 [-] Timing out client: IPv4Address(type='TCP', host='127.0.0.1', port=34850)
+2024-02-17 14:00:03+0100 [-] Timing out client: IPv4Address(type='TCP', host='127.0.0.1', port=34834)
+2024-02-17 14:00:03+0100 [-] Timing out client: IPv4Address(type='TCP', host='127.0.0.1', port=34818)
+2024-02-17 14:00:03+0100 [-] Timing out client: IPv4Address(type='TCP', host='127.0.0.1', port=34862)
+2024-02-17 14:00:04+0100 [-] gitpoller: processing changes from "https://github.com/buildbot/hello-world.git"
+2024-02-17 14:03:25+0100 [-] gitpoller: processing changes from "https://github.com/buildbot/hello-world.git"
+2024-02-17 14:06:02+0100 [-] Initiating clean shutdown
+2024-02-17 14:06:02+0100 [-] No running jobs, starting shutdown immediately
+2024-02-17 14:06:02+0100 [Broker,0,127.0.0.1] Worker.detached(worker)
+2024-02-17 14:06:02+0100 [Broker,0,127.0.0.1] releaseLocks(<Worker 'worker'>): []
+2024-02-17 14:06:02+0100 [-] doing housekeeping for master 2 parrot:/home/mrx/Desktop/HACKUDC/hackudc-ci/buildbot-ci/master
+2024-02-17 14:06:02+0100 [-] Worker worker detached from runtests
+2024-02-17 14:06:02+0100 [-] (TCP Port 8010 Closed)
+2024-02-17 14:06:02+0100 [-] Stopping factory <buildbot.www.service.BuildbotSite object at 0x7fd6a31ce4d0>
+2024-02-17 14:06:02+0100 [-] (TCP Port 9989 Closed)
+2024-02-17 14:06:02+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory object at 0x7fd6a31db350>
+2024-02-17 14:06:02+0100 [-] BuildMaster is stopped
+2024-02-17 14:06:02+0100 [-] Main loop terminated.
+2024-02-17 14:06:02+0100 [-] Server Shut Down.
+2024-02-17 14:08:50+0100 [-] Loading buildbot.tac...
+2024-02-17 14:08:50+0100 [-] Loaded.
+2024-02-17 14:08:50+0100 [-] twistd 23.10.0 (/home/mrx/Desktop/EXAMPLE2/source/bin/python3 3.11.2) starting up.
+2024-02-17 14:08:50+0100 [-] reactor class: twisted.internet.epollreactor.EPollReactor.
+2024-02-17 14:08:50+0100 [-] Starting BuildMaster -- buildbot.version: 3.11.0
+2024-02-17 14:08:50+0100 [-] Loading configuration from '/home/mrx/Desktop/HACKUDC/hackudc-ci/buildbot-ci/master/master.cfg'
+2024-02-17 14:08:50+0100 [-] Setting up database with URL 'sqlite:/state.sqlite'
+2024-02-17 14:08:50+0100 [-] setting database journal mode to 'wal'
+2024-02-17 14:08:50+0100 [-] doing housekeeping for master 1 parrot:/home/mrx/Desktop/EXAMPLE2/master
+2024-02-17 14:08:50+0100 [-] adding 1 new change_sources, removing 0
+2024-02-17 14:08:50+0100 [-] gitpoller: using workdir '/home/mrx/Desktop/HACKUDC/hackudc-ci/buildbot-ci/master/gitpoller-workdir'
+2024-02-17 14:08:50+0100 [-] adding 1 new builders, removing 0
+2024-02-17 14:08:50+0100 [-] adding 2 new schedulers, removing 0
+2024-02-17 14:08:50+0100 [-] initializing www plugin 'waterfall_view'
+2024-02-17 14:08:50+0100 [-] initializing www plugin 'console_view'
+2024-02-17 14:08:50+0100 [-] initializing www plugin 'grid_view'
+2024-02-17 14:08:50+0100 [-] initializing www plugin 'waterfall_view'
+2024-02-17 14:08:50+0100 [-] initializing www plugin 'console_view'
+2024-02-17 14:08:50+0100 [-] initializing www plugin 'grid_view'
+2024-02-17 14:08:50+0100 [-] BuildbotSite starting on 8010
+2024-02-17 14:08:50+0100 [-] Starting factory <buildbot.www.service.BuildbotSite object at 0x7fd1c0913250>
+2024-02-17 14:08:50+0100 [-] adding 1 new workers, removing 0
+2024-02-17 14:08:50+0100 [-] PBServerFactory starting on 9989
+2024-02-17 14:08:50+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory object at 0x7fd1c084ed10>
+2024-02-17 14:08:50+0100 [-] BuildMaster is running
+2024-02-17 14:08:54+0100 [Broker,0,127.0.0.1] worker 'worker' attaching from IPv4Address(type='TCP', host='127.0.0.1', port=45182)
+2024-02-17 14:08:54+0100 [Broker,0,127.0.0.1] Got workerinfo from 'worker'
+2024-02-17 14:08:54+0100 [-] bot attached
+2024-02-17 14:08:54+0100 [Broker,0,127.0.0.1] Worker worker attached to runtests
+2024-02-17 14:13:51+0100 [-] gitpoller: processing changes from "https://github.com/buildbot/hello-world.git"
+2024-02-17 14:18:51+0100 [-] gitpoller: processing changes from "https://github.com/buildbot/hello-world.git"
+2024-02-17 14:23:51+0100 [-] gitpoller: processing changes from "https://github.com/buildbot/hello-world.git"
+2024-02-17 14:28:51+0100 [-] gitpoller: processing changes from "https://github.com/buildbot/hello-world.git"
+2024-02-17 14:29:54+0100 [-] Initiating clean shutdown
+2024-02-17 14:29:54+0100 [-] No running jobs, starting shutdown immediately
+2024-02-17 14:29:54+0100 [Broker,0,127.0.0.1] Worker.detached(worker)
+2024-02-17 14:29:54+0100 [Broker,0,127.0.0.1] releaseLocks(<Worker 'worker'>): []
+2024-02-17 14:29:54+0100 [-] doing housekeeping for master 2 parrot:/home/mrx/Desktop/HACKUDC/hackudc-ci/buildbot-ci/master
+2024-02-17 14:29:54+0100 [-] Worker worker detached from runtests
+2024-02-17 14:29:55+0100 [-] (TCP Port 8010 Closed)
+2024-02-17 14:29:55+0100 [-] Stopping factory <buildbot.www.service.BuildbotSite object at 0x7fd1c0913250>
+2024-02-17 14:29:55+0100 [-] (TCP Port 9989 Closed)
+2024-02-17 14:29:55+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory object at 0x7fd1c084ed10>
+2024-02-17 14:29:55+0100 [-] BuildMaster is stopped
+2024-02-17 14:29:55+0100 [-] Main loop terminated.
+2024-02-17 14:29:55+0100 [-] Server Shut Down.
+2024-02-17 14:32:57+0100 [-] Loading buildbot.tac...
+2024-02-17 14:32:57+0100 [-] Loaded.
+2024-02-17 14:32:57+0100 [-] twistd 23.10.0 (/home/mrx/Desktop/EXAMPLE2/source/bin/python3 3.11.2) starting up.
+2024-02-17 14:32:57+0100 [-] reactor class: twisted.internet.epollreactor.EPollReactor.
+2024-02-17 14:32:57+0100 [-] Starting BuildMaster -- buildbot.version: 3.11.0
+2024-02-17 14:32:57+0100 [-] Loading configuration from '/home/mrx/Desktop/HACKUDC/hackudc-ci/buildbot-ci/master/master.cfg'
+2024-02-17 14:32:57+0100 [-] Setting up database with URL 'sqlite:/state.sqlite'
+2024-02-17 14:32:57+0100 [-] setting database journal mode to 'wal'
+2024-02-17 14:32:57+0100 [-] doing housekeeping for master 1 parrot:/home/mrx/Desktop/EXAMPLE2/master
+2024-02-17 14:32:57+0100 [-] adding 1 new change_sources, removing 0
+2024-02-17 14:32:57+0100 [-] gitpoller: using workdir '/home/mrx/Desktop/HACKUDC/hackudc-ci/buildbot-ci/master/gitpoller-workdir'
+2024-02-17 14:32:57+0100 [-] adding 1 new builders, removing 0
+2024-02-17 14:32:57+0100 [-] adding 2 new schedulers, removing 0
+2024-02-17 14:32:57+0100 [-] initializing www plugin 'waterfall_view'
+2024-02-17 14:32:57+0100 [-] initializing www plugin 'console_view'
+2024-02-17 14:32:57+0100 [-] initializing www plugin 'grid_view'
+2024-02-17 14:32:57+0100 [-] initializing www plugin 'waterfall_view'
+2024-02-17 14:32:57+0100 [-] initializing www plugin 'console_view'
+2024-02-17 14:32:57+0100 [-] initializing www plugin 'grid_view'
+2024-02-17 14:32:57+0100 [-] BuildbotSite starting on 8010
+2024-02-17 14:32:57+0100 [-] Starting factory <buildbot.www.service.BuildbotSite object at 0x7f67db2f5ed0>
+2024-02-17 14:32:57+0100 [-] adding 1 new workers, removing 0
+2024-02-17 14:32:57+0100 [-] PBServerFactory starting on 9989
+2024-02-17 14:32:57+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory object at 0x7f67da9077d0>
+2024-02-17 14:32:57+0100 [-] BuildMaster is running
+2024-02-17 14:32:59+0100 [Broker,0,127.0.0.1] worker 'worker' attaching from IPv4Address(type='TCP', host='127.0.0.1', port=41246)
+2024-02-17 14:32:59+0100 [Broker,0,127.0.0.1] Got workerinfo from 'worker'
+2024-02-17 14:32:59+0100 [-] bot attached
+2024-02-17 14:32:59+0100 [Broker,0,127.0.0.1] Worker worker attached to runtests
+2024-02-17 14:33:09+0100 [-] Initiating clean shutdown
+2024-02-17 14:33:09+0100 [-] No running jobs, starting shutdown immediately
+2024-02-17 14:33:09+0100 [Broker,0,127.0.0.1] Worker.detached(worker)
+2024-02-17 14:33:09+0100 [Broker,0,127.0.0.1] releaseLocks(<Worker 'worker'>): []
+2024-02-17 14:33:09+0100 [-] doing housekeeping for master 2 parrot:/home/mrx/Desktop/HACKUDC/hackudc-ci/buildbot-ci/master
+2024-02-17 14:33:09+0100 [-] Worker worker detached from runtests
+2024-02-17 14:33:09+0100 [-] (TCP Port 8010 Closed)
+2024-02-17 14:33:09+0100 [-] Stopping factory <buildbot.www.service.BuildbotSite object at 0x7f67db2f5ed0>
+2024-02-17 14:33:09+0100 [-] (TCP Port 9989 Closed)
+2024-02-17 14:33:09+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory object at 0x7f67da9077d0>
+2024-02-17 14:33:09+0100 [-] BuildMaster is stopped
+2024-02-17 14:33:09+0100 [-] Main loop terminated.
+2024-02-17 14:33:09+0100 [-] Server Shut Down.
+2024-02-17 14:39:45+0100 [-] Loading buildbot.tac...
+2024-02-17 14:39:45+0100 [-] Loaded.
+2024-02-17 14:39:45+0100 [-] twistd 23.10.0 (/home/mrx/Desktop/EXAMPLE2/source/bin/python3 3.11.2) starting up.
+2024-02-17 14:39:45+0100 [-] reactor class: twisted.internet.epollreactor.EPollReactor.
+2024-02-17 14:39:45+0100 [-] Starting BuildMaster -- buildbot.version: 3.11.0
+2024-02-17 14:39:45+0100 [-] Loading configuration from '/home/mrx/Desktop/HACKUDC/hackudc-ci/buildbot-ci/master/master.cfg'
+2024-02-17 14:39:45+0100 [-] Setting up database with URL 'sqlite:/state.sqlite'
+2024-02-17 14:39:45+0100 [-] setting database journal mode to 'wal'
+2024-02-17 14:39:45+0100 [-] doing housekeeping for master 1 parrot:/home/mrx/Desktop/EXAMPLE2/master
+2024-02-17 14:39:45+0100 [-] adding 1 new change_sources, removing 0
+2024-02-17 14:39:45+0100 [-] gitpoller: using workdir '/home/mrx/Desktop/HACKUDC/hackudc-ci/buildbot-ci/master/gitpoller-workdir'
+2024-02-17 14:39:45+0100 [-] adding 1 new builders, removing 0
+2024-02-17 14:39:45+0100 [-] adding 2 new schedulers, removing 0
+2024-02-17 14:39:45+0100 [-] initializing www plugin 'waterfall_view'
+2024-02-17 14:39:45+0100 [-] initializing www plugin 'console_view'
+2024-02-17 14:39:45+0100 [-] initializing www plugin 'grid_view'
+2024-02-17 14:39:45+0100 [-] initializing www plugin 'waterfall_view'
+2024-02-17 14:39:45+0100 [-] initializing www plugin 'console_view'
+2024-02-17 14:39:45+0100 [-] initializing www plugin 'grid_view'
+2024-02-17 14:39:45+0100 [-] BuildbotSite starting on 8010
+2024-02-17 14:39:45+0100 [-] Starting factory <buildbot.www.service.BuildbotSite object at 0x7ffb149a2510>
+2024-02-17 14:39:45+0100 [-] adding 1 new workers, removing 0
+2024-02-17 14:39:45+0100 [-] PBServerFactory starting on 9989
+2024-02-17 14:39:45+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory object at 0x7ffb149af310>
+2024-02-17 14:39:45+0100 [-] BuildMaster is running
+2024-02-17 14:39:47+0100 [Broker,0,127.0.0.1] worker 'worker' attaching from IPv4Address(type='TCP', host='127.0.0.1', port=57348)
+2024-02-17 14:39:47+0100 [Broker,0,127.0.0.1] Got workerinfo from 'worker'
+2024-02-17 14:39:47+0100 [-] bot attached
+2024-02-17 14:39:47+0100 [Broker,0,127.0.0.1] Worker worker attached to runtests
+2024-02-17 14:40:33+0100 [-] Initiating clean shutdown
+2024-02-17 14:40:33+0100 [-] No running jobs, starting shutdown immediately
+2024-02-17 14:40:33+0100 [Broker,0,127.0.0.1] Worker.detached(worker)
+2024-02-17 14:40:33+0100 [Broker,0,127.0.0.1] releaseLocks(<Worker 'worker'>): []
+2024-02-17 14:40:33+0100 [-] doing housekeeping for master 2 parrot:/home/mrx/Desktop/HACKUDC/hackudc-ci/buildbot-ci/master
+2024-02-17 14:40:33+0100 [-] Worker worker detached from runtests
+2024-02-17 14:40:33+0100 [-] (TCP Port 8010 Closed)
+2024-02-17 14:40:33+0100 [-] Stopping factory <buildbot.www.service.BuildbotSite object at 0x7ffb149a2510>
+2024-02-17 14:40:33+0100 [-] (TCP Port 9989 Closed)
+2024-02-17 14:40:33+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory object at 0x7ffb149af310>
+2024-02-17 14:40:33+0100 [-] BuildMaster is stopped
+2024-02-17 14:40:33+0100 [-] Main loop terminated.
+2024-02-17 14:40:33+0100 [-] Server Shut Down.

@@ -141,3 +141,59 @@
 2024-02-17 12:58:28+0100 [Broker,client] message from master: attached
 2024-02-17 12:58:28+0100 [Broker,client] Connected to buildmaster; worker is ready
 2024-02-17 12:58:28+0100 [Broker,client] sending application-level keepalives every 600 seconds
+2024-02-17 14:00:03+0100 [Broker,client] message from master: keepalive
+2024-02-17 14:00:03+0100 [-] sending app-level keepalive
+2024-02-17 14:00:03+0100 [Broker,client] Master replied to keepalive, everything's fine
+2024-02-17 14:06:02+0100 [-] Received SIGTERM, shutting down.
+2024-02-17 14:06:02+0100 [-] Stopping factory <buildbot_worker.pb.BotFactory object at 0x7f66590ee410>
+2024-02-17 14:06:02+0100 [-] Main loop terminated.
+2024-02-17 14:06:02+0100 [-] Server Shut Down.
+2024-02-17 14:08:54+0100 [-] Loading buildbot.tac...
+2024-02-17 14:08:54+0100 [-] Loaded.
+2024-02-17 14:08:54+0100 [-] twistd 23.10.0 (/home/mrx/Desktop/EXAMPLE2/source/bin/python3 3.11.2) starting up.
+2024-02-17 14:08:54+0100 [-] reactor class: twisted.internet.epollreactor.EPollReactor.
+2024-02-17 14:08:54+0100 [-] Starting Worker -- version: 3.11.0
+2024-02-17 14:08:54+0100 [-] recording hostname in twistd.hostname
+2024-02-17 14:08:54+0100 [-] Starting factory <buildbot_worker.pb.BotFactory object at 0x7f184da4f110>
+2024-02-17 14:08:54+0100 [Broker,client] message from master: attached
+2024-02-17 14:08:54+0100 [Broker,client] message from master: attached
+2024-02-17 14:08:54+0100 [Broker,client] Connected to buildmaster; worker is ready
+2024-02-17 14:08:54+0100 [Broker,client] sending application-level keepalives every 600 seconds
+2024-02-17 14:18:54+0100 [-] sending app-level keepalive
+2024-02-17 14:18:54+0100 [Broker,client] Master replied to keepalive, everything's fine
+2024-02-17 14:28:54+0100 [-] sending app-level keepalive
+2024-02-17 14:28:54+0100 [Broker,client] Master replied to keepalive, everything's fine
+2024-02-17 14:29:54+0100 [-] Received SIGTERM, shutting down.
+2024-02-17 14:29:54+0100 [-] Stopping factory <buildbot_worker.pb.BotFactory object at 0x7f184da4f110>
+2024-02-17 14:29:54+0100 [-] Main loop terminated.
+2024-02-17 14:29:54+0100 [-] Server Shut Down.
+2024-02-17 14:32:59+0100 [-] Loading buildbot.tac...
+2024-02-17 14:32:59+0100 [-] Loaded.
+2024-02-17 14:32:59+0100 [-] twistd 23.10.0 (/home/mrx/Desktop/EXAMPLE2/source/bin/python3 3.11.2) starting up.
+2024-02-17 14:32:59+0100 [-] reactor class: twisted.internet.epollreactor.EPollReactor.
+2024-02-17 14:32:59+0100 [-] Starting Worker -- version: 3.11.0
+2024-02-17 14:32:59+0100 [-] recording hostname in twistd.hostname
+2024-02-17 14:32:59+0100 [-] Starting factory <buildbot_worker.pb.BotFactory object at 0x7fcd21a8fbd0>
+2024-02-17 14:32:59+0100 [Broker,client] message from master: attached
+2024-02-17 14:32:59+0100 [Broker,client] message from master: attached
+2024-02-17 14:32:59+0100 [Broker,client] Connected to buildmaster; worker is ready
+2024-02-17 14:32:59+0100 [Broker,client] sending application-level keepalives every 600 seconds
+2024-02-17 14:33:09+0100 [-] Received SIGTERM, shutting down.
+2024-02-17 14:33:09+0100 [-] Stopping factory <buildbot_worker.pb.BotFactory object at 0x7fcd21a8fbd0>
+2024-02-17 14:33:09+0100 [-] Main loop terminated.
+2024-02-17 14:33:09+0100 [-] Server Shut Down.
+2024-02-17 14:39:47+0100 [-] Loading buildbot.tac...
+2024-02-17 14:39:47+0100 [-] Loaded.
+2024-02-17 14:39:47+0100 [-] twistd 23.10.0 (/home/mrx/Desktop/EXAMPLE2/source/bin/python3 3.11.2) starting up.
+2024-02-17 14:39:47+0100 [-] reactor class: twisted.internet.epollreactor.EPollReactor.
+2024-02-17 14:39:47+0100 [-] Starting Worker -- version: 3.11.0
+2024-02-17 14:39:47+0100 [-] recording hostname in twistd.hostname
+2024-02-17 14:39:47+0100 [-] Starting factory <buildbot_worker.pb.BotFactory object at 0x7fc56c239790>
+2024-02-17 14:39:47+0100 [Broker,client] message from master: attached
+2024-02-17 14:39:47+0100 [Broker,client] message from master: attached
+2024-02-17 14:39:47+0100 [Broker,client] Connected to buildmaster; worker is ready
+2024-02-17 14:39:47+0100 [Broker,client] sending application-level keepalives every 600 seconds
+2024-02-17 14:40:33+0100 [-] Received SIGTERM, shutting down.
+2024-02-17 14:40:33+0100 [-] Stopping factory <buildbot_worker.pb.BotFactory object at 0x7fc56c239790>
+2024-02-17 14:40:33+0100 [-] Main loop terminated.
+2024-02-17 14:40:33+0100 [-] Server Shut Down.
