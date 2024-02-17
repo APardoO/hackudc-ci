@@ -6,6 +6,7 @@
 cd mbedtls
 cmake -DCMAKE_C_COMPILER=gcc -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=Release -B build -G "Unix Makefiles" .
 cmake -C build
+cd ..
 
 CODEE_ACCEPT_EULA=yes && pwreport mbedtls/library/*.c --config mbedtls/build/compile_commands.json --json > codee-report.json
 CODEE_ACCEPT_EULA=yes && pwreport --checks --verbose --config mbedtls/build/compile_commands.json --json > proc-json/codee-checks.json
