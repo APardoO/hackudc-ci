@@ -11,7 +11,7 @@ declare -r turquoiseColour="\e[0;36m\033[1m"
 declare -r grayColour="\e[0;37m\033[1m"
 
 # Variables globales
-declare -a dependencies=(python3 git tput build-essential python3-dev libssl-dev libffi-dev sqlite3)
+declare -a dependencies=(python3 git build-essential python3-dev libssl-dev libffi-dev sqlite3)
 
 # Variables globales de buildbot
 declare -r buildbot_master_dir="master"
@@ -27,6 +27,28 @@ function ctrl_c(){
 	exit 1
 }
 
+# Panel de ayuda
+function helpPannel(){
+	echo -e "${blueColour}[USAGE]${endColour} ${yellowColour}.$0${endColour} ${grayColour}-h (--help) -d (--delete_instalation)${endColour}\n"
+	tput cnorm
+	exit 2
+}
+
+# Eliminar los pricesos
+function delete_buidbot_proccess(){
+	declare -a process=($(netstat -putana | awk '{print $7}' | grep -v "\-" | grep "python" | awk '{print $1}' FS="/" | sort -u | xargs echo " "))
+	if [ "${#process[@]}" -eq "0" ]; then tput cnorm; exit 0; fi
+	echo -e "\n${yellowColour}[*]${endColour} ${grayColour}Deleting process:${endColour} ${blueColour}${process[@]}${endColour}"
+	for proc in ${process[@]}; do
+		kill $proc
+		if [ $? -ne 0 ]; then
+			echo "\n${redColour}[ERROR]${endColour} ${yellowColour}Cannot kill process$proc...${endColour}\n"
+			tput cnorm
+			exit 1
+		fi
+	done
+}
+
 # Instalamos las dependencias
 function install_dependencies(){
 	echo -e "${yellowColour}[+]${endColour} ${grayColour}Checking dependencies...${endColour}"
@@ -40,7 +62,6 @@ function install_dependencies(){
 	done
 }
 
-
 ## ===> Buildbot master
 function buildbot_master(){
 	echo -e "\n${yellowColour}[*]${endColour} ${grayColour}Generating master node...${endColour}"
@@ -50,7 +71,11 @@ function buildbot_master(){
 	pip install 'buildbot[bundle]'
 	echo -e "\n${purpleColour}[+]${endColour} ${grayColour}Starting buildbot master node...${endColour}"
 	buildbot start $buildbot_master_dir
-	if [ $? -ne 0 ]; then echo -e "\n${redColour}[ERROR]${endColour} ${yellowColour}Cannot startup buildbot $buildbot_master_dir${endColour}\n"; exit 1; fi
+	if [ $? -ne 0 ]; then
+		echo -e "\n${redColour}[ERROR]${endColour} ${yellowColour}Cannot startup buildbot $buildbot_master_dir${endColour}\n"
+		tput cnorm
+		exit 1
+	fi
 }
 
 ## ===> Buildbot worker
@@ -62,12 +87,27 @@ function buildbot_worker(){
 	pip install buildbot-worker setuptools-trial
 	echo -e "\n${purpleColour}[+]${endColour} ${grayColour}Starting buildbot worker node...${endColour}"
 	buildbot-worker start $buildbot_worker_dir
-	if [ $? -ne 0 ]; then echo -e "\n${redColour}[ERROR]${endColour} ${yellowColour}Cannot startup buildbot-worker $buildbot_worker_dir${endColour}\n"; exit 1; fi
+	if [ $? -ne 0 ]; then
+		echo -e "\n${redColour}[ERROR]${endColour} ${yellowColour}Cannot startup buildbot-worker $buildbot_worker_dir${endColour}\n"
+		tput cnorm
+		exit 1
+	fi
 }
+
 
 # Programa principal
 tput civis
-install_dependencies
-buildbot_master
-buildbot_worker
+declare -i parameter_counter=0; while getopts ":dh:" arg; do
+	case $arg in
+		d) let parameter_counter+=1 ;;
+		h) helpPanel;;
+	esac
+done
+if [ $parameter_counter -ne 0 ]; then
+	delete_buidbot_proccess
+else
+	install_dependencies
+	buildbot_master
+	buildbot_worker
+fi
 tput cnorm
