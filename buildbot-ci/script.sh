@@ -11,12 +11,12 @@ declare -r turquoiseColour="\e[0;36m\033[1m"
 declare -r grayColour="\e[0;37m\033[1m"
 
 # Variables globales
-declare -a dependencies=(python3 git build-essential python3-dev libssl-dev libffi-dev sqlite3)
+declare -a dependencies=(python3 git cmake build-essential python3-dev libssl-dev libffi-dev sqlite3)
 
 # Variables globales de buildbot
-declare -r buildbot_master_dir="$(realpath .)/../buildbot-ci/master"
-declare -r buildbot_worker_dir="$(realpath .)/../buildbot-ci/worker"
-declare -r buildbot_environ="$(realpath .)/../buildbot-ci/source"
+declare -r buildbot_master_dir="$(realpath .)/buildbot-ci/master"
+declare -r buildbot_worker_dir="$(realpath .)/buildbot-ci/worker"
+declare -r buildbot_environ="$(realpath .)/buildbot-ci/source"
 
 
 # Trap del Ctrl_C
@@ -35,9 +35,9 @@ function helpPannel(){
 }
 
 # Eliminar los pricesos
-function delete_buidbot_proccess(){
+function delete_buildbot_proccess(){
 	declare -a process=($(netstat -putana | awk '{print $7}' | grep -v "\-" | grep "python" | awk '{print $1}' FS="/" | sort -u | xargs echo " "))
-	if [ "${#process[@]}" -eq "0" ]; then tput cnorm; exit 0; fi
+	if [ "${#process[@]}" -eq "0" ]; then tput cnorm; return 0; fi
 	echo -e "\n${yellowColour}[*]${endColour} ${grayColour}Deleting process:${endColour} ${blueColour}${process[@]}${endColour}"
 	for proc in ${process[@]}; do
 		kill $proc
@@ -73,7 +73,7 @@ function buildbot_master(){
 	fi
 	echo -e "\n${purpleColour}[+]${endColour} ${grayColour}Installing${endColour} ${blueColour}buildbot${endColour}${grayColour}...${endColour}"
 	pip install --upgrade pip
-	pip install 'buildbot[bundle]'
+	pip install 'buildbot[bundle]' sarif-tools
 	echo -e "\n${purpleColour}[+]${endColour} ${grayColour}Starting buildbot master node...${endColour}"
 	buildbot start $buildbot_master_dir
 	if [ $? -ne 0 ]; then
@@ -109,8 +109,9 @@ declare -i parameter_counter=0; while getopts ":dh" arg; do
 	esac
 done
 if [ $parameter_counter -ne 0 ]; then
-	delete_buidbot_proccess
+	delete_buildbot_proccess
 else
+	delete_buildbot_proccess
 	install_dependencies
 	buildbot_master
 	buildbot_worker
