@@ -1,0 +1,85 @@
+2024-02-17 05:07:52+0100 [-] Loading buildbot.tac...
+2024-02-17 05:07:52+0100 [-] Loaded.
+2024-02-17 05:07:52+0100 [-] twistd 23.10.0 (/home/mrx/Desktop/EXAMPLE2/source/bin/python3 3.11.2) starting up.
+2024-02-17 05:07:52+0100 [-] reactor class: twisted.internet.epollreactor.EPollReactor.
+2024-02-17 05:07:52+0100 [-] Starting BuildMaster -- buildbot.version: 3.11.0
+2024-02-17 05:07:52+0100 [-] Loading configuration from '/home/mrx/Desktop/EXAMPLE2/master/master.cfg'
+2024-02-17 05:07:52+0100 [-] Setting up database with URL 'sqlite:/state.sqlite'
+2024-02-17 05:07:52+0100 [-] setting database journal mode to 'wal'
+2024-02-17 05:07:52+0100 [-] adding 1 new change_sources, removing 0
+2024-02-17 05:07:52+0100 [-] gitpoller: using workdir '/home/mrx/Desktop/EXAMPLE2/master/gitpoller-workdir'
+2024-02-17 05:07:52+0100 [-] adding 1 new builders, removing 0
+2024-02-17 05:07:52+0100 [-] adding 2 new schedulers, removing 0
+2024-02-17 05:07:52+0100 [-] initializing www plugin 'waterfall_view'
+2024-02-17 05:07:52+0100 [-] initializing www plugin 'console_view'
+2024-02-17 05:07:52+0100 [-] initializing www plugin 'grid_view'
+2024-02-17 05:07:52+0100 [-] initializing www plugin 'waterfall_view'
+2024-02-17 05:07:52+0100 [-] initializing www plugin 'console_view'
+2024-02-17 05:07:52+0100 [-] initializing www plugin 'grid_view'
+2024-02-17 05:07:52+0100 [-] BuildbotSite starting on 8010
+2024-02-17 05:07:52+0100 [-] Starting factory <buildbot.www.service.BuildbotSite object at 0x7f51dec6ff10>
+2024-02-17 05:07:52+0100 [-] adding 1 new workers, removing 0
+2024-02-17 05:07:52+0100 [-] PBServerFactory starting on 9989
+2024-02-17 05:07:52+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory object at 0x7f51dec6fa90>
+2024-02-17 05:07:52+0100 [-] BuildMaster is running
+2024-02-17 05:11:25+0100 [Broker,0,127.0.0.1] worker 'worker' attaching from IPv4Address(type='TCP', host='127.0.0.1', port=51634)
+2024-02-17 05:11:25+0100 [Broker,0,127.0.0.1] Got workerinfo from 'worker'
+2024-02-17 05:11:25+0100 [-] bot attached
+2024-02-17 05:11:25+0100 [Broker,0,127.0.0.1] Worker worker attached to runtests
+2024-02-17 05:11:32+0100 [_GenericHTTPChannelProtocol,0,127.0.0.1] Signature verification failed Web request has been rejected.Signature verification failed while decoding JWT.
+2024-02-17 05:11:51+0100 [Broker,0,127.0.0.1] Worker.detached(worker)
+2024-02-17 05:11:51+0100 [Broker,0,127.0.0.1] releaseLocks(<Worker 'worker'>): []
+2024-02-17 05:11:51+0100 [-] Worker worker detached from runtests
+2024-02-17 05:12:00+0100 [-] Initiating clean shutdown
+2024-02-17 05:12:00+0100 [-] No running jobs, starting shutdown immediately
+2024-02-17 05:12:00+0100 [-] doing housekeeping for master 1 parrot:/home/mrx/Desktop/EXAMPLE2/master
+2024-02-17 05:12:00+0100 [-] (TCP Port 8010 Closed)
+2024-02-17 05:12:00+0100 [-] Stopping factory <buildbot.www.service.BuildbotSite object at 0x7f51dec6ff10>
+2024-02-17 05:12:00+0100 [-] (TCP Port 9989 Closed)
+2024-02-17 05:12:00+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory object at 0x7f51dec6fa90>
+2024-02-17 05:12:00+0100 [-] BuildMaster is stopped
+2024-02-17 05:12:00+0100 [-] Main loop terminated.
+2024-02-17 05:12:00+0100 [-] Server Shut Down.
+2024-02-17 07:22:04+0100 [-] Loading buildbot.tac...
+2024-02-17 07:22:05+0100 [-] Loaded.
+2024-02-17 07:22:05+0100 [-] twistd 23.10.0 (/home/mrx/Desktop/EXAMPLE2/source/bin/python3 3.11.2) starting up.
+2024-02-17 07:22:05+0100 [-] reactor class: twisted.internet.epollreactor.EPollReactor.
+2024-02-17 07:22:05+0100 [-] Starting BuildMaster -- buildbot.version: 3.11.0
+2024-02-17 07:22:05+0100 [-] Loading configuration from '/home/mrx/Desktop/EXAMPLE2/master/master.cfg'
+2024-02-17 07:22:05+0100 [-] Setting up database with URL 'sqlite:/state.sqlite'
+2024-02-17 07:22:05+0100 [-] setting database journal mode to 'wal'
+2024-02-17 07:22:05+0100 [-] doing housekeeping for master 1 parrot:/home/mrx/Desktop/EXAMPLE2/master
+2024-02-17 07:22:05+0100 [-] adding 1 new change_sources, removing 0
+2024-02-17 07:22:05+0100 [-] gitpoller: using workdir '/home/mrx/Desktop/EXAMPLE2/master/gitpoller-workdir'
+2024-02-17 07:22:05+0100 [-] adding 1 new builders, removing 0
+2024-02-17 07:22:05+0100 [-] adding 2 new schedulers, removing 0
+2024-02-17 07:22:05+0100 [-] initializing www plugin 'waterfall_view'
+2024-02-17 07:22:05+0100 [-] initializing www plugin 'console_view'
+2024-02-17 07:22:05+0100 [-] initializing www plugin 'grid_view'
+2024-02-17 07:22:05+0100 [-] initializing www plugin 'waterfall_view'
+2024-02-17 07:22:05+0100 [-] initializing www plugin 'console_view'
+2024-02-17 07:22:05+0100 [-] initializing www plugin 'grid_view'
+2024-02-17 07:22:05+0100 [-] BuildbotSite starting on 8010
+2024-02-17 07:22:05+0100 [-] Starting factory <buildbot.www.service.BuildbotSite object at 0x7f26335e08d0>
+2024-02-17 07:22:05+0100 [-] adding 1 new workers, removing 0
+2024-02-17 07:22:05+0100 [-] PBServerFactory starting on 9989
+2024-02-17 07:22:05+0100 [-] Starting factory <twisted.spread.pb.PBServerFactory object at 0x7f2632c9b810>
+2024-02-17 07:22:05+0100 [-] BuildMaster is running
+2024-02-17 07:22:20+0100 [Broker,0,127.0.0.1] worker 'worker' attaching from IPv4Address(type='TCP', host='127.0.0.1', port=41396)
+2024-02-17 07:22:20+0100 [Broker,0,127.0.0.1] Got workerinfo from 'worker'
+2024-02-17 07:22:20+0100 [-] bot attached
+2024-02-17 07:22:20+0100 [Broker,0,127.0.0.1] Worker worker attached to runtests
+2024-02-17 07:22:25+0100 [_GenericHTTPChannelProtocol,0,127.0.0.1] Signature verification failed Web request has been rejected.Signature verification failed while decoding JWT.
+2024-02-17 07:22:39+0100 [Broker,0,127.0.0.1] Worker.detached(worker)
+2024-02-17 07:22:39+0100 [Broker,0,127.0.0.1] releaseLocks(<Worker 'worker'>): []
+2024-02-17 07:22:39+0100 [-] Worker worker detached from runtests
+2024-02-17 07:22:44+0100 [-] Initiating clean shutdown
+2024-02-17 07:22:44+0100 [-] No running jobs, starting shutdown immediately
+2024-02-17 07:22:44+0100 [-] doing housekeeping for master 1 parrot:/home/mrx/Desktop/EXAMPLE2/master
+2024-02-17 07:22:44+0100 [-] (TCP Port 8010 Closed)
+2024-02-17 07:22:44+0100 [-] Stopping factory <buildbot.www.service.BuildbotSite object at 0x7f26335e08d0>
+2024-02-17 07:22:44+0100 [-] (TCP Port 9989 Closed)
+2024-02-17 07:22:44+0100 [-] Stopping factory <twisted.spread.pb.PBServerFactory object at 0x7f2632c9b810>
+2024-02-17 07:22:44+0100 [-] BuildMaster is stopped
+2024-02-17 07:22:44+0100 [-] Main loop terminated.
+2024-02-17 07:22:44+0100 [-] Server Shut Down.
