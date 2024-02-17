@@ -55,7 +55,7 @@ function buildbot_master(){
 ## ===> Buildbot worker
 function buildbot_worker(){
 	echo -e "\n${yellowColour}[*]${endColour} ${grayColour}Generating worker node...${endColour}"
-	source "$buildbot_environ/bin/activate"
+	# source "$buildbot_environ/bin/activate"
 	echo -e "\n${purpleColour}[+]${endColour} ${grayColour}Installing${endColour} ${blueColour}buildbot-worker${endColour} ${grayColour}and${endColour} ${blueColour}setuptools-trial${endColour}${grayColour}...${endColour}"
 	pip install --upgrade pip
 	pip install buildbot-worker setuptools-trial
