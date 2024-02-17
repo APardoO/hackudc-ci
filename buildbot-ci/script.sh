@@ -35,7 +35,7 @@ function helpPannel(){
 }
 
 # Eliminar los pricesos
-function delete_buidbot_proccess(){
+function delete_buildbot_proccess(){
 	declare -a process=($(netstat -putana | awk '{print $7}' | grep -v "\-" | grep "python" | awk '{print $1}' FS="/" | sort -u | xargs echo " "))
 	if [ "${#process[@]}" -eq "0" ]; then tput cnorm; exit 0; fi
 	echo -e "\n${yellowColour}[*]${endColour} ${grayColour}Deleting process:${endColour} ${blueColour}${process[@]}${endColour}"
@@ -109,9 +109,11 @@ declare -i parameter_counter=0; while getopts ":dh" arg; do
 	esac
 done
 if [ $parameter_counter -ne 0 ]; then
-	delete_buidbot_proccess
+	delete_buildbot_proccess
 else
-	install_dependencies
+	delete_buildbot_proccess
+	#install_dependencies
+	sleep 1.5
 	buildbot_master
 	buildbot_worker
 fi
