@@ -29,7 +29,7 @@ function ctrl_c(){
 
 # Panel de ayuda
 function helpPannel(){
-	echo -e "${blueColour}[USAGE]${endColour} ${yellowColour}.$0${endColour} ${grayColour}-h (--help) -d (--delete_instalation)${endColour}\n"
+	echo -e "${blueColour}[USAGE]${endColour} ${yellowColour}$0${endColour} ${grayColour}-h (--help) -d (--delete_instalation)${endColour}\n"
 	tput cnorm
 	exit 2
 }
@@ -97,10 +97,10 @@ function buildbot_worker(){
 
 # Programa principal
 tput civis
-declare -i parameter_counter=0; while getopts ":dh:" arg; do
+declare -i parameter_counter=0; while getopts ":dh" arg; do
 	case $arg in
 		d) let parameter_counter+=1 ;;
-		h) helpPanel;;
+		h) helpPannel ;;
 	esac
 done
 if [ $parameter_counter -ne 0 ]; then
