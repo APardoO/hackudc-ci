@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 #
-cp -r $1 ./codee
+cp -r $1 ../codee
