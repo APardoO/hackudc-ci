@@ -7,7 +7,7 @@ def load_json(filename):
 
 # Load both JSON files
 codee_screening = load_json('./codee-screening.json')
-codee_checks1 = load_json('./codee-checks1.json')
+codee_checks1 = load_json('./codee-checks.json')
 
 # Extract the "Ranking of Checkers" and flatten the list of lists
 ranking_of_checkers = [checker for sublist in codee_screening['Ranking of Checkers'] for checker in sublist]
@@ -29,4 +29,4 @@ filtered_checks_file_path = './filtered_sorted_checks_with_autofix.json'
 
 # Save the filtered checks to the specified file
 with open(filtered_checks_file_path, 'w') as file:
-    json.dump(sorted_checks_with_autofix, file, indent=4)
+    json.dump(filtered_checks_file_path, file, indent=4)
